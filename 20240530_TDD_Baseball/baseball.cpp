@@ -21,6 +21,10 @@ public:
 		AssertIlligalArgument(guessNumber);
 		if (guessNumber == question)
 			return { true, 3, 0 };
+
+		if(guessNumber[0] == question[0] && guessNumber[1] == question[1])
+			return { false, 2, 0 };
+
 		return { false, 0, 0 };
 	}
 	void AssertIlligalArgument(const std::string& guessNumber)
