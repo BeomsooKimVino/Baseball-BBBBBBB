@@ -8,7 +8,7 @@ public:
 	Baseball game{ "123" };
 	void AssertIlligalArgument(string guessNumber) {
 		try {
-			game.guess(guessNumber);
+			game.Guess(guessNumber);
 			FAIL();
 		}
 		catch (exception e)
@@ -25,7 +25,7 @@ TEST_F(BaseballFixture, ThrowExceptionWhenInvalidCase) {
 }
 
 TEST_F(BaseballFixture, ReturnSolvedResultIfMatchedNumber) {
-	GuessResult result = game.guess("123");
+	GuessResult result = game.Guess("123");
 
 	EXPECT_TRUE(result.solved);
 	EXPECT_EQ(3, result.strikes);
@@ -34,7 +34,7 @@ TEST_F(BaseballFixture, ReturnSolvedResultIfMatchedNumber) {
 }
 
 TEST_F(BaseballFixture, ReturnSolvedResultIfNotMatchedNumber) {
-	GuessResult result = game.guess("456");
+	GuessResult result = game.Guess("456");
 
 	EXPECT_EQ(false, result.solved);
 	EXPECT_EQ(0, result.strikes);
@@ -42,7 +42,7 @@ TEST_F(BaseballFixture, ReturnSolvedResultIfNotMatchedNumber) {
 }
 
 TEST_F(BaseballFixture, ReturnSolvedResultIf2Strikes) {
-	GuessResult result = game.guess("124");
+	GuessResult result = game.Guess("124");
 
 	EXPECT_EQ(false, result.solved);
 	EXPECT_EQ(2, result.strikes);
@@ -51,7 +51,7 @@ TEST_F(BaseballFixture, ReturnSolvedResultIf2Strikes) {
 
 
 TEST_F(BaseballFixture, ReturnSolvedResultIf1Strikes2Balls) {
-	GuessResult result = game.guess("132");
+	GuessResult result = game.Guess("132");
 
 	EXPECT_EQ(false, result.solved);
 	EXPECT_EQ(1, result.strikes);

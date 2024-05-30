@@ -17,7 +17,7 @@ public:
 		this->question = question;
 	}
 
-	GuessResult guess(const string& guessNumber) {
+	GuessResult Guess(const string& guessNumber) {
 		AssertIlligalArgument(guessNumber);
 		if (guessNumber == question)
 			return { true, 3, 0 };
@@ -41,6 +41,8 @@ public:
 			throw std::invalid_argument("Duplicated number in guessNumber.");
 		}
 	}
+
+private:
 	bool IsDuplicatedNumber(const std::string& guessNumber)
 	{
 		return guessNumber[0] == guessNumber[1]
@@ -71,6 +73,6 @@ public:
 		
 		return balls;
 	}
-private:
+
 	string question;
 };
