@@ -5,11 +5,11 @@ using namespace std;
 
 class Baseball {
 public:
-	void guess(const string& string) {
-		if (string.length() != 3)
+	void guess(const string& guessNumber) {
+		if (guessNumber.length() != 3)
 			throw length_error("Must be three letters.");
 
-		for (auto ch : string)
+		for (auto ch : guessNumber)
 		{
 			if (!std::isdigit(ch))
 				throw std::invalid_argument("Must be number.");

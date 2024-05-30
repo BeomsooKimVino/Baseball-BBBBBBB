@@ -3,12 +3,22 @@
 
 #include <stdexcept>
 
-TEST(BaseballGame, ThrowExceptionWhenInputLenghtIsUnmached) {
+class BaseballFixture : public testing::Test {
+public:
 	Baseball game;
-	EXPECT_THROW(game.guess("12"), std::length_error);
-}
+	void AssertIlligalArgument(string guessNumber) {
+		try {
+			game.guess(guessNumber);
+			FAIL();
+		}
+		catch (exception e)
+		{
+			// PASS
+		}
+	}
+};
 
-TEST(BaseballGame, ThrowExceptionWhenInvalidChar) {
-	Baseball game;
-	EXPECT_THROW(game.guess("12s"), std::invalid_argument);
+TEST_F(BaseballFixture, ThrowExceptionWhenInvalidCase) {
+	AssertIlligalArgument("12");
+	AssertIlligalArgument("12s");
 }
