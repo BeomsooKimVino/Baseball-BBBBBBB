@@ -22,11 +22,9 @@ public:
 		if (guessNumber == question)
 			return { true, 3, 0 };
 
-		if(guessNumber[0] == question[0] && guessNumber[1] == question[1])
-			return { false, 2, 0 };
-
-		return { false, 0, 0 };
+		return { false, GetStrikes(guessNumber), 0 };
 	}
+
 	void AssertIlligalArgument(const std::string& guessNumber)
 	{
 		if (guessNumber.length() != 3)
@@ -48,6 +46,17 @@ public:
 		return guessNumber[0] == guessNumber[1]
 			|| guessNumber[0] == guessNumber[2]
 			|| guessNumber[1] == guessNumber[2];
+	}
+
+	int GetStrikes(const string& guessNumber)
+	{
+		int strikes = 0;
+		for (int position = 0; position < 3; position++)
+		{
+			if (guessNumber[position] == question[position])
+				strikes++;
+		}
+		return strikes;
 	}
 private:
 	string question;
