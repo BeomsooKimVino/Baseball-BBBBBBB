@@ -3,10 +3,23 @@
 using namespace std;
 #include <cctype>
 
+struct GuessResult
+{
+	bool solved;
+	int strikes;
+	int balls;
+};
+
 class Baseball {
 public:
-	void guess(const string& guessNumber) {
+	Baseball(const string& question)
+	{
+		this->question = question;
+	}
+
+	GuessResult guess(const string& guessNumber) {
 		AssertIlligalArgument(guessNumber);
+		return { true, 3, 0 };
 	}
 	void AssertIlligalArgument(const std::string& guessNumber)
 	{
@@ -30,4 +43,6 @@ public:
 			|| guessNumber[0] == guessNumber[2]
 			|| guessNumber[1] == guessNumber[2];
 	}
+private:
+	string question;
 };
