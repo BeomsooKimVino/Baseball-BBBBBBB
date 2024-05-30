@@ -22,10 +22,7 @@ public:
 		if (guessNumber == question)
 			return { true, 3, 0 };
 
-		if (guessNumber == "132")
-			return { false, GetStrikes(guessNumber), 2 };
-
-		return { false, GetStrikes(guessNumber), 0 };
+		return { false, GetStrikes(guessNumber), GetBalls(guessNumber)};
 	}
 
 	void AssertIlligalArgument(const std::string& guessNumber)
@@ -60,6 +57,19 @@ public:
 				strikes++;
 		}
 		return strikes;
+	}
+
+	int GetBalls(const string& guessNumber)
+	{
+		int balls = 0;
+		balls += (guessNumber[0] == question[1]);
+		balls += (guessNumber[0] == question[2]);
+		balls += (guessNumber[1] == question[0]);
+		balls += (guessNumber[1] == question[2]);
+		balls += (guessNumber[2] == question[0]);
+		balls += (guessNumber[2] == question[1]);
+		
+		return balls;
 	}
 private:
 	string question;
