@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "../20240530_TDD_Baseball/baseball.cpp"
 
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+#include <stdexcept>
+
+TEST(BaseballGame, ThrowExceptionWhenInputLenghtIsUnmached) {
+	Baseball game;
+	EXPECT_THROW(game.guess("12"), std::length_error);
 }
