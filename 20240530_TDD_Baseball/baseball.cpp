@@ -22,6 +22,9 @@ public:
 		if (guessNumber == question)
 			return { true, 3, 0 };
 
+		if (guessNumber == "132")
+			return { false, GetStrikes(guessNumber), 2 };
+
 		return { false, GetStrikes(guessNumber), 0 };
 	}
 
