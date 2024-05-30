@@ -19,8 +19,8 @@ public:
 
 	GuessResult Guess(const string& guessNumber) {
 		AssertIlligalArgument(guessNumber);
-		if (guessNumber == question)
-			return { true, 3, 0 };
+		if (IsCorrectAnswer(guessNumber))
+			return CorrectAnswer;
 
 		return { false, GetStrikes(guessNumber), GetBalls(guessNumber)};
 	}
@@ -50,6 +50,11 @@ private:
 			|| guessNumber[1] == guessNumber[2];
 	}
 
+	bool IsCorrectAnswer(const string& guessNumber)
+	{
+		return guessNumber == question;
+	}
+
 	int GetStrikes(const string& guessNumber)
 	{
 		int strikes = 0;
@@ -64,15 +69,17 @@ private:
 	int GetBalls(const string& guessNumber)
 	{
 		int balls = 0;
-		balls += (guessNumber[0] == question[1]);
-		balls += (guessNumber[0] == question[2]);
-		balls += (guessNumber[1] == question[0]);
-		balls += (guessNumber[1] == question[2]);
-		balls += (guessNumber[2] == question[0]);
-		balls += (guessNumber[2] == question[1]);
-		
+		for (int guessIdx = 0; guessIdx < 3; guessIdx++)
+		{
+			for (int questionIdx = 0; questionIdx < 3; questionIdx++)
+			{
+				if (guessIdx == questionIdx) continue;
+				balls += (guessNumber[guessIdx] == question[questionIdx]) ? 1 : 0;
+			}
+		}
 		return balls;
 	}
+	const GuessResult CorrectAnswer = { true, 3, 0 };
 
 	string question;
 };
