@@ -7,3 +7,8 @@ TEST(BaseballGame, ThrowExceptionWhenInputLenghtIsUnmached) {
 	Baseball game;
 	EXPECT_THROW(game.guess("12"), std::length_error);
 }
+
+TEST(BaseballGame, ThrowExceptionWhenInvalidChar) {
+	Baseball game;
+	EXPECT_THROW(game.guess("12s"), std::invalid_argument);
+}
